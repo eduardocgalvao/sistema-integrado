@@ -3,6 +3,7 @@ package com.grupo.sistema.chamados.model;
 import java.util.Date;
 
 public class Chamado {
+    private long idChamado;
     private String equipamento;
     private String descricao;
     private Date data_abertura;
@@ -45,6 +46,10 @@ public class Chamado {
         this.status = status;
     }
 
+    public void setIdChamado(long idChamado) {
+        this.idChamado = idChamado;
+    }
+
     public String getEquipamento() {
         return equipamento;
     }
@@ -61,8 +66,11 @@ public class Chamado {
         return data_fechamento;
     }
 
-    public StatusChamado getStatus() {
+    public String getStatus() {
         return status;
     }
 
+    public long getIdChamado() {
+        return idChamado;
+    }
 }
