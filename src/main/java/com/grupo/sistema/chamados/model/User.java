@@ -1,7 +1,7 @@
 package com.grupo.sistema.chamados.model;
 
 public class User  {
-    protected long idUser ;
+    protected long idUser;
     private String nome;
     private String email;
     private String setor;

@@ -2,15 +2,17 @@ package com.grupo.sistema.chamados.model;
 
 import java.util.Date;
 
+
 public class Chamado {
-    private long idChamado;
+    private int idChamado;
     private String equipamento;
     private String descricao;
     private Date data_abertura;
     private Date data_fechamento;
-    private StatusChamado status;
+    private String status;
+    private User user;
 
-    public Chamado(String equipamento, String descricao, Date data_abertura, Date data_fechamento, StatusChamado status){
+    public Chamado(String equipamento, String descricao, Date data_abertura, Date data_fechamento, String status){
         this.equipamento = equipamento;
         this.descricao = descricao;
         this.data_abertura = data_abertura;
@@ -42,11 +44,15 @@ public class Chamado {
         this.data_fechamento = data_fechamento;
     }
 
-    public void setStatus(StatusChamado status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public void setIdChamado(long idChamado) {
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setIdChamado(int idChamado) {
         this.idChamado = idChamado;
     }
 
@@ -72,5 +78,9 @@ public class Chamado {
 
     public long getIdChamado() {
         return idChamado;
+    }
+
+    public User getUser() {
+        return user;
     }
 }

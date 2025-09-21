@@ -7,9 +7,9 @@ import java.sql.SQLException;
 public class ConnectionFactory{
 
     // Dados para a conexão com o banco de dados
-    private static final String url = "jdbc:mysql://localhost:3306/sistema_chamado";
+    private static final String url = "jdbc:mysql://root:naNIJbOCSJpQELMIpExGicuIfwuQcNLi@yamabiko.proxy.rlwy.net:57757/sistema_chamado";
     private static final String user = "root";
-    private static final String password = "admin";
+    private static final String password = "naNIJbOCSJpQELMIpExGicuIfwuQcNLi";
 
     private static Connection conn;
 
@@ -26,5 +26,7 @@ public class ConnectionFactory{
             e.printStackTrace();
             return null;
         }
+
+
     }
 }
