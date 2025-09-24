@@ -33,7 +33,6 @@ public class ChamadoDAO {
                 } else{
                     ps.setNull(3, java.sql.Types.DATE);
                 }
-
                 if (chamado.getData_fechamento() != null){
                     ps.setDate(4, new java.sql.Date(chamado.getData_fechamento().getTime()));
                 }else{
@@ -49,7 +48,7 @@ public class ChamadoDAO {
 
 
                 ps.close();
-
+                conn.close();
             }  catch (SQLException e) {
                 e.printStackTrace();
                 throw new RuntimeException(e);
@@ -58,28 +57,87 @@ public class ChamadoDAO {
 
     public List<Chamado> SearchChamado(){
         List<Chamado> chamados = new ArrayList<>();
-        String sql = "SELECT * FROM usuario";
+        String sql = "SELECT " +
+                "     c.equipamento, " +
+                "     c.descricao,  " +
+                "     c.data_abertura, " +
+                "     c.data_fechamento, " +
+                "     u.nome AS usuario_nome " +
+                "FROM chamado c " +
+                "JOIN usuario u ON c.idUsuario = u.idUsuario";
+
 
         try {
+            //garante a conexão o db
             ps = ConnectionFactory.getConexao().prepareStatement(sql);
+            //executa a consulta no db
             rs = ps.executeQuery();
 
+            //percorre as linhas do db
             while(rs.next()){
                 Chamado ch = new Chamado();
+                User u = new User();
 
-                ch.setIdChamado(rs.getInt("idChamado"));
+                //inner join entre chamado e usuario
+                ch.setUsuarioNome(rs.getString("usuario_nome"));
                 ch.setEquipamento(rs.getString("equipamento"));
                 ch.setDescricao(rs.getString("descricao"));
                 ch.setData_abertura(rs.getDate("data_abertura"));
-                ch.setData_fechamento(rs.getDate("data_abertura"));
+                ch.setData_fechamento(rs.getDate("data_fechamento"));
                 chamados.add(ch);
 
 
             }
+            //lista os chamados
+            System.out.println(chamados.toString());
+            //fecha a execução
+            ps.close();
+            conn.close();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
         return chamados;
     }
+
+    //Edição dos dados do chamado (admin)
+    public void editChamado(Chamado chamado){
+        String sql = "UPDATE usuario SET equipamento = ?, descricao = ?,  where idUsuario = ?";
+
+        try {
+            ps = ConnectionFactory.getConexao().prepareStatement(sql);
+            ps.setString(1, chamado.getEquipamento());
+            ps.setString(2, chamado.getDescricao());
+            ps.setInt(3, chamado.getIdChamado());
+            ps.executeUpdate();
+            ps.close();
+            System.out.println("Usuário atualizado com sucesso");
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+    //Exclusão de chamado (admin)
+    public void deleteChamado(Chamado chamado){
+        String sql = "DELETE FROM chamado WHERE idChamado = ?";
+
+        try {
+            ps = ConnectionFactory.getConexao().prepareStatement(sql);
+            ps.setInt(1, chamado.getIdChamado());
+            ps.execute();
+
+
+            if (ps.execute() == false){
+                System.out.println("Chamado excluido com sucesso.");
+            }else{
+                System.out.println("Chamado não encontrado");
+            }
+
+            ps.close();
+            conn.close();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
 }

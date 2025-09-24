@@ -11,6 +11,7 @@ public class Chamado {
     private Date data_fechamento;
     private String status;
     private User user;
+    private String usuarioNome;
 
     public Chamado(String equipamento, String descricao, Date data_abertura, Date data_fechamento, String status){
         this.equipamento = equipamento;
@@ -52,6 +53,10 @@ public class Chamado {
         this.user = user;
     }
 
+    public void setUsuarioNome(String usuarioNome) {
+        this.usuarioNome = usuarioNome;
+    }
+
     public void setIdChamado(int idChamado) {
         this.idChamado = idChamado;
     }
@@ -76,11 +81,22 @@ public class Chamado {
         return status;
     }
 
-    public long getIdChamado() {
+    public int getIdChamado() {
         return idChamado;
     }
 
     public User getUser() {
         return user;
+    }
+
+    public String getUsuarioNome() {
+        return usuarioNome;
+    }
+
+    //sobrescreve a função para legibilidade da consulta no db
+    @Override
+    public String toString(){
+
+        return  "Usuario: "  + usuarioNome + " \n Equipamento: " + equipamento + "\n descrição: " + descricao + "\n dataabertura: " + data_abertura + "\n data de fechamento:  " + data_fechamento + "\n#####################\n";
     }
 }

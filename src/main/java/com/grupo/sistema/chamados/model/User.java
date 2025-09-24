@@ -1,12 +1,13 @@
 package com.grupo.sistema.chamados.model;
 
 public class User  {
-    protected long idUser;
+    protected int idUser;
     private String nome;
     private String email;
+    private String senha;
     private String setor;
 
-    public User(String nome, String email, String setor, long idUser){
+    public User(String nome, String email, String setor, int idUser){
         this.nome = nome;
         this.email = email;
         this.setor = setor;
@@ -32,8 +33,12 @@ public class User  {
         this.setor = setor;
     }
 
-    public void setId(long idUser) {
+    public void setId(int idUser) {
         this.idUser = idUser;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getNome() {
@@ -44,11 +49,20 @@ public class User  {
         return email;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
     public String getSetor() {
         return setor;
     }
 
-    public long getIdUser() {
+    public int getIdUser() {
         return idUser;
+    }
+
+    @Override
+    public String toString(){
+        return "Usuario: " + nome + "\n email: " + email + "\n setor: " + setor + "\n ######################### \n";
     }
 }

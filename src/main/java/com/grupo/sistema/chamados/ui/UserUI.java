@@ -1,10 +1,10 @@
 package com.grupo.sistema.chamados.ui;
 
-import com.grupo.sistema.chamados.service.UserService;
+import com.grupo.sistema.chamados.service.UserRepository;
 import java.util.Scanner;
 
 public class UserUI {
-    private UserService UserService;
+    private UserRepository UserService;
     private Scanner scanner;
 
 }

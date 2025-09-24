@@ -1,0 +1,36 @@
+*Cadastro de usuário (cadastrar)
+
+ -Um usuário deve ter nome, email e setor obrigatoriamente para ser cadastrado.
+
+ -O ID é gerado automaticamente pelo banco de dados (auto_increment).
+
+ -O método associa esse ID ao objeto User depois do insert.
+
+
+*Listar usuários (SearchUser)
+
+ -O sistema pode recuperar todos os usuários cadastrados sem filtros.
+
+ -Cada usuário retornado deve ter idUsuario, nome, email e setor.
+
+ -Se não houver usuários, retorna lista vazia.
+
+
+*Edição de usuário (editUser)
+
+ -Só é possível atualizar um usuário que já existe, identificado por idUsuario.
+
+ -Campos alteráveis: nome, email, setor.
+
+ -O idUsuario é obrigatório para edição.
+
+ -O sistema confirma a atualização com um println.
+
+
+*Exclusão de usuário (deleteUser)
+
+ -O usuário só pode ser deletado pelo seu idUsuario.
+
+ -Se o usuário existe, ele é removido.
+
+ -O DAO imprime mensagem de sucesso ou erro caso não encontre o usuário.

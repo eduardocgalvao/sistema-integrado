@@ -6,7 +6,14 @@ import com.grupo.sistema.chamados.model.User;
 
 public class App {
     public static void main(String[] args) {
-        new UserDAO().SearchUser();
+       User u = new User();
+
+
+       u.setId(11);
+
+       UserDAO user = new UserDAO();
+       user.deleteUser(u);
+
 
     }
 }
