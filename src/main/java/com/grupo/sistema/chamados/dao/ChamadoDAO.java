@@ -15,7 +15,7 @@ public class ChamadoDAO {
     PreparedStatement ps;
     ResultSet rs;
 
-    public void abrirChamado(Chamado chamado){
+    public  void abrirChamado(Chamado chamado){
         // Comando MySQL para inserir dados no banco
         String sql = "INSERT INTO chamado (equipamento, descricao, data_abertura, data_fechamento, idUsuario ) VALUES (?, ?, ?, ?, ?)";
 
@@ -55,7 +55,7 @@ public class ChamadoDAO {
             }
     }
 
-    public List<Chamado> SearchChamado(){
+    public List<Chamado> searchChamado(){
         List<Chamado> chamados = new ArrayList<>();
         String sql = "SELECT " +
                 "     c.equipamento, " +

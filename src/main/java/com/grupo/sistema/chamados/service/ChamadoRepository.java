@@ -1,6 +1,13 @@
 package com.grupo.sistema.chamados.service;
 
+import com.grupo.sistema.chamados.model.Chamado;
+
+import java.util.List;
+
 public interface ChamadoRepository {
-    public abstract void novoChamado();
-    public abstract void deletarChamado();
+    public abstract void abrirChamado(Chamado chamado);
+    List<Chamado> searchChamado();
+    public abstract void editChamado(Chamado chamado);
+    public abstract void deleteChamado(Chamado chamado);
+
 }
