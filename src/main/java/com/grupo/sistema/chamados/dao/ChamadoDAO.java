@@ -48,14 +48,14 @@ public class ChamadoDAO {
 
 
                 ps.close();
-                conn.close();
+
             }  catch (SQLException e) {
                 e.printStackTrace();
                 throw new RuntimeException(e);
             }
     }
 
-    public List<Chamado> searchChamado(){
+    public List<Chamado> searchChamado() {
         List<Chamado> chamados = new ArrayList<>();
         String sql = "SELECT " +
                 "     c.equipamento, " +
@@ -74,7 +74,7 @@ public class ChamadoDAO {
             rs = ps.executeQuery();
 
             //percorre as linhas do db
-            while(rs.next()){
+            while (rs.next()) {
                 Chamado ch = new Chamado();
                 User u = new User();
 
@@ -92,14 +92,20 @@ public class ChamadoDAO {
             System.out.println(chamados.toString());
             //fecha a execução
             ps.close();
-            conn.close();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        System.out.println("[DEBUG] ChamadoDAO.searchChamado() encontrou " + chamados.size() + " chamados.");
+        for (Chamado c : chamados) {
+            System.out.println("[DEBUG] Chamado: " + c.getEquipamento());
 
+            return chamados;
+        }
         return chamados;
     }
+
+
 
     //Edição dos dados do chamado (admin)
     public void editChamado(Chamado chamado){
@@ -134,7 +140,7 @@ public class ChamadoDAO {
             }
 
             ps.close();
-            conn.close();
+
         } catch (SQLException e){
             e.printStackTrace();
         }

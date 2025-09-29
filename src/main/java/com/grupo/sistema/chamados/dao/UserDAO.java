@@ -27,8 +27,7 @@ public class UserDAO{
             ps = ConnectionFactory.getConexao().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, user.getNome());
             ps.setString(2, user.getEmail());
-            ps.setString(3, user.getSenha());
-            ps.setString(4, user.getSetor());
+            ps.setString(3, user.getSetor());
 
             ps.executeUpdate();
             //Obtém o ID gerado pela primakey (auto_increment)
@@ -88,6 +87,8 @@ public class UserDAO{
 
 
     }
+
+
 
     //Edição do usuário (admin)
     public void editUser(User user){

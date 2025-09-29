@@ -21,7 +21,7 @@ public class User  {
         setor = "NULL";
     }
 
-    public void setNome(String nome) {
+    public  void setNome(String nome) {
         this.nome = nome;
     }
 

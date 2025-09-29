@@ -3,17 +3,22 @@ import com.grupo.sistema.chamados.dao.ChamadoDAO;
 import com.grupo.sistema.chamados.dao.UserDAO;
 import com.grupo.sistema.chamados.model.Chamado;
 import com.grupo.sistema.chamados.model.User;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class App {
+public class App extends Application {
     public static void main(String[] args) {
-       User u = new User();
+        launch(args);
+    }
 
-
-       u.setId(11);
-
-       UserDAO user = new UserDAO();
-       user.deleteUser(u);
-
-
+    @Override
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/chamadosFXML/user/chamado-inicio.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
