@@ -8,6 +8,7 @@ import java.util.List;
 
 
 import com.grupo.sistema.chamados.db.ConnectionFactory;
+import com.grupo.sistema.chamados.model.StatusChamado;
 import com.grupo.sistema.chamados.model.User;
 
 public class ChamadoDAO {
@@ -17,7 +18,7 @@ public class ChamadoDAO {
 
     public  void abrirChamado(Chamado chamado){
         // Comando MySQL para inserir dados no banco
-        String sql = "INSERT INTO chamado (equipamento, descricao, data_abertura, data_fechamento, idUsuario ) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO chamado (equipamento, descricao, data_abertura, data_fechamento, idUsuario, idStatus ) VALUES (?, ?, ?, ?, ?, ?)";
 
         PreparedStatement ps = null;
 
@@ -39,6 +40,7 @@ public class ChamadoDAO {
                     ps.setNull(4, java.sql.Types.DATE);
                 }
                 ps.setLong(5, chamado.getUser().getIdUser());
+                ps.setInt(6, chamado.getStatus().getIdStatus());
 
                 ps.executeUpdate();
                 ResultSet rs = ps.getGeneratedKeys();
@@ -58,13 +60,15 @@ public class ChamadoDAO {
     public List<Chamado> searchChamado() {
         List<Chamado> chamados = new ArrayList<>();
         String sql = "SELECT " +
+                "     u.nome AS usuarioNome, " +
                 "     c.equipamento, " +
                 "     c.descricao,  " +
                 "     c.data_abertura, " +
-                "     c.data_fechamento, " +
-                "     u.nome AS usuario_nome " +
-                "FROM chamado c " +
-                "JOIN usuario u ON c.idUsuario = u.idUsuario";
+                "     c.data_fechamento," +
+                "     s.nome AS statusNome " +
+                "  FROM chamado c " +
+                "JOIN usuario u ON c.idUsuario = u.idUsuario " +
+                "JOIN statuschamado s ON c.idStatus = s.idStatus";
 
 
         try {
@@ -77,13 +81,15 @@ public class ChamadoDAO {
             while (rs.next()) {
                 Chamado ch = new Chamado();
                 User u = new User();
+                StatusChamado s = new StatusChamado();
 
                 //inner join entre chamado e usuario
-                ch.setUsuarioNome(rs.getString("usuario_nome"));
+                ch.setUsuarioNome(rs.getString("usuarioNome"));
                 ch.setEquipamento(rs.getString("equipamento"));
                 ch.setDescricao(rs.getString("descricao"));
                 ch.setData_abertura(rs.getDate("data_abertura"));
                 ch.setData_fechamento(rs.getDate("data_fechamento"));
+                ch.setStatusNome(rs.getString("statusNome"));
                 chamados.add(ch);
 
 

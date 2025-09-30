@@ -9,16 +9,18 @@ public class Chamado {
     private String descricao;
     private Date data_abertura;
     private Date data_fechamento;
-    private String status;
+    private StatusChamado status;
     private User user;
     private String usuarioNome;
+    private String statusNome;
 
-    public Chamado(String equipamento, String descricao, Date data_abertura, Date data_fechamento, String status){
+    public Chamado(String equipamento, String descricao, Date data_abertura, Date data_fechamento, StatusChamado status, String usuarioNome){
         this.equipamento = equipamento;
         this.descricao = descricao;
         this.data_abertura = data_abertura;
         this.data_fechamento = data_fechamento;
         this.status = status;
+        this.usuarioNome = usuarioNome;
     }
 
     public Chamado(){
@@ -27,6 +29,7 @@ public class Chamado {
         data_abertura = null;
         data_fechamento = null;
         status = null;
+        usuarioNome = null;
     }
 
     public void setEquipamento(String equipamento) {
@@ -45,7 +48,7 @@ public class Chamado {
         this.data_fechamento = data_fechamento;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusChamado status) {
         this.status = status;
     }
 
@@ -55,6 +58,10 @@ public class Chamado {
 
     public void setUsuarioNome(String usuarioNome) {
         this.usuarioNome = usuarioNome;
+    }
+
+    public void setStatusNome(String statusNome) {
+        this.statusNome = statusNome;
     }
 
     public void setIdChamado(int idChamado) {
@@ -77,8 +84,12 @@ public class Chamado {
         return data_fechamento;
     }
 
-    public String getStatus() {
+    public StatusChamado getStatus() {
         return status;
+    }
+
+    public String getStatusNome() {
+        return statusNome;
     }
 
     public int getIdChamado() {
@@ -97,6 +108,6 @@ public class Chamado {
     @Override
     public String toString(){
 
-        return  "Usuario: "  + usuarioNome + " \n Equipamento: " + equipamento + "\n descrição: " + descricao + "\n dataabertura: " + data_abertura + "\n data de fechamento:  " + data_fechamento + "\n#####################\n";
+        return  "Usuario: "  + usuarioNome + " \n Equipamento: " + equipamento + "\n descrição: " + descricao + "\n dataabertura: " + data_abertura + "\n data de fechamento:  " + data_fechamento + " \nStatus: " + statusNome + "\n#####################\n";
     }
 }

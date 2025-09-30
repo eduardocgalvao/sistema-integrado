@@ -3,6 +3,7 @@ package com.grupo.sistema.chamados.ui.UserUI;
 import com.grupo.sistema.chamados.dao.ChamadoDAO;
 import com.grupo.sistema.chamados.dao.UserDAO;
 import com.grupo.sistema.chamados.model.Chamado;
+import com.grupo.sistema.chamados.model.StatusChamado;
 import com.grupo.sistema.chamados.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,13 +33,16 @@ public class UserChamadoController  {
         try{
             Chamado ch = new Chamado();
             User user = new User();
+            StatusChamado status = new StatusChamado();
             user.setId(25);
+            status.setIdStatus(1);
 
             ch.setEquipamento(inputEquipamento.getText());
             ch.setDescricao(inputDescricao.getText());
             long tempoAtual = System.currentTimeMillis();
             ch.setData_abertura(new java.sql.Date(tempoAtual));
             ch.setUser(user);
+            ch.setStatus(status);
 
 
 

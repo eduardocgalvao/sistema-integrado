@@ -1,44 +1,39 @@
-package com.grupo.sistema.chamados.ui.UserUI;
+package com.grupo.sistema.chamados.ui.AdminUI;
 
 import com.grupo.sistema.chamados.dao.ChamadoDAO;
 import com.grupo.sistema.chamados.model.Chamado;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class UserListChamadoController implements Initializable {
+public class AdminChamadosListController implements Initializable {
     @FXML
     private TableView<Chamado> tableListChamado;
     @FXML
-    private TableColumn<Chamado, String> equipamentoList;
+    private TableColumn<Chamado, String> equipList;
     @FXML
-    private TableColumn<Chamado, String> descricaoList;
+    private TableColumn<Chamado, String> descList;
     @FXML
     private TableColumn<Chamado, java.sql.Date> dateList;
     @FXML
     private TableColumn<Chamado, String> statusList;
+    @FXML
+    private TableColumn<Chamado, String> userList;
 
 
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         try {
-            equipamentoList.setCellValueFactory(new PropertyValueFactory<>("equipamento"));
-            descricaoList.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+            userList.setCellValueFactory(new PropertyValueFactory<>("usuarioNome"));
+            equipList.setCellValueFactory(new PropertyValueFactory<>("equipamento"));
+            descList.setCellValueFactory(new PropertyValueFactory<>("descricao"));
             dateList.setCellValueFactory(new PropertyValueFactory<>("data_abertura"));
             statusList.setCellValueFactory(new PropertyValueFactory<>("statusNome"));
 
@@ -52,13 +47,5 @@ public class UserListChamadoController implements Initializable {
         } catch (Exception e){
             e.printStackTrace();
         }
-    }
-
-    public void switchWindow(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/chamadosFXML/user/newChamado.fxml"));
-        Scene scene = new Scene(root);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
     }
 }

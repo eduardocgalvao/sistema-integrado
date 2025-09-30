@@ -12,7 +12,7 @@ public class StatusDAO {
     PreparedStatement ps;
     ResultSet rs;
 
-    public void setStatus(StatusChamado status){
+    public void definirStatus(StatusChamado status){
         String sql = "INSERT INTO statuschamado (nome, idChamado) VALUES (?, ?)";
 
         PreparedStatement ps = null;
@@ -29,9 +29,11 @@ public class StatusDAO {
             status.getIdStatus();
 
             ps.close();
-            conn.close();
+
         } catch (SQLException e){
             e.printStackTrace();
         }
     }
+
+
 }

@@ -19,7 +19,8 @@
         <columns>
           <TableColumn fx:id="equipamentoList" prefWidth="153.0" text="Equipamento" />
           <TableColumn fx:id="descricaoList" prefWidth="294.39996337890625" text=" Descrição" />
-            <TableColumn fx:id="dateList" prefWidth="257.6000671386719" text="Data" />
+            <TableColumn fx:id="dateList" prefWidth="254.0" text="Data" />
+            <TableColumn fx:id="statusList" prefWidth="254.0" text="Status" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
