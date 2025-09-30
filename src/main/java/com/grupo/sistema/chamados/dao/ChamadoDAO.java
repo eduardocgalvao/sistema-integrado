@@ -109,7 +109,7 @@ public class ChamadoDAO {
 
     //Edição dos dados do chamado (admin)
     public void editChamado(Chamado chamado){
-        String sql = "UPDATE usuario SET equipamento = ?, descricao = ?,  where idUsuario = ?";
+        String sql = "UPDATE chamado SET equipamento = ?, descricao = ?,  where idUsuario = ?";
 
         try {
             ps = ConnectionFactory.getConexao().prepareStatement(sql);

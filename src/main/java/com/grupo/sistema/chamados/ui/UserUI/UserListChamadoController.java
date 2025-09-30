@@ -39,6 +39,7 @@ public class UserListChamadoController implements Initializable {
         try {
             equipamentoList.setCellValueFactory(new PropertyValueFactory<>("equipamento"));
             descricaoList.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+            dateList.setCellValueFactory(new PropertyValueFactory<>("data_abertura"));
 
 
             List<Chamado> chamados = new ChamadoDAO().searchChamado();
