@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.grupo.sistema.menu.MenuController"
+            stylesheets="@/css/menu.css">
+
+    <!-- Sidebar lateral -->
+    <left>
+        <VBox prefWidth="220" spacing="15" styleClass="sidebar">
+            <Label text="Eduardo²Yan²" styleClass="sidebar-title"/>
+
+            <!-- Botões de navegação -->
+            <Button styleClass="sidebar-button" onAction="#abrirAtivos">
+                <graphic>
+                    <FontIcon iconLiteral="fas-database" iconSize="16" iconColor="white"/>
+                </graphic>
+                <text>Ativos</text>
+            </Button>
+
+            <Button styleClass="sidebar-button" onAction="#abrirChamados">
+                <graphic>
+                    <FontIcon iconLiteral="fas-headset" iconSize="16" iconColor="white"/>
+                </graphic>
+                <text>Chamados</text>
+            </Button>
+        </VBox>
+    </left>
+
+    <!-- Área central -->
+    <center>
+        <StackPane fx:id="conteudoArea" styleClass="content-area">
+            <Label text="Bem-vindo"/>
+        </StackPane>
+    </center>
+</BorderPane>
