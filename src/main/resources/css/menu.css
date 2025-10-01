@@ -1,0 +1,53 @@
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: #1c1c1c; /* fundo geral escuro */
+}
+
+/* Sidebar */
+.sidebar {
+    -fx-background-color: linear-gradient(to bottom, #1e1e1e, #2a2a2a);
+    -fx-padding: 20 10 20 10;
+    -fx-alignment: TOP_CENTER;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 4);
+}
+
+.sidebar-title {
+    -fx-text-fill: linear-gradient(to right, #ff7e5f, #feb47b); /* mesmo gradiente da tela de login */
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 30 0;
+}
+
+.sidebar-button {
+    -fx-pref-width: 200px;
+    -fx-pref-height: 45px;
+    -fx-background-color: transparent;
+    -fx-text-fill: #e0e0e0;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-graphic-text-gap: 15px;
+    -fx-cursor: hand;
+    -fx-padding: 0 0 0 15px;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-transition: 0.3s;
+}
+
+.sidebar-button:hover {
+    -fx-background-color: rgba(255, 126, 95, 0.2); /* hover com cor do gradiente */
+    -fx-text-fill: white;
+}
+
+/* Área de conteúdo */
+.content-area {
+    -fx-background-color: #121212; /* fundo sólido escuro */
+    -fx-padding: 20;
+    -fx-background-radius: 12;
+    -fx-effect: innershadow(gaussian, rgba(255,255,255,0.05), 10, 0, 0, 0);
+}
+
+.content-area Label {
+    -fx-text-fill: #f1f1f1;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
