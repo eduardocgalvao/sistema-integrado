@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.grupo.sistema.login.LoginController">
+
+    <HBox prefWidth="1000" prefHeight="600" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+          AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0">
+
+        <!-- Painel esquerdo (formulário) -->
+        <StackPane prefWidth="450" styleClass="form-section">
+
+            <!-- LOGIN -->
+            <VBox fx:id="loginPane" alignment="CENTER" spacing="15" maxWidth="300">
+                <Label text="Faça seu Login" styleClass="titulo"/>
+                <TextField fx:id="campoEmail" promptText="Email" styleClass="input-field"/>
+                <PasswordField fx:id="campoSenha" promptText="Senha" styleClass="input-field"/>
+                <Hyperlink text="Esqueci minha senha" styleClass="link"/>
+                <Button text="Entrar" onAction="#fazerLogin" styleClass="btn-entrar"/>
+                <Hyperlink text="Ainda não tenho conta" onAction="#mostrarCadastro" styleClass="link"/>
+                <Label fx:id="mensagemLogin"/>
+            </VBox>
+
+            <!-- CADASTRO -->
+            <VBox fx:id="cadastroPane" alignment="CENTER" spacing="15" maxWidth="300" visible="false">
+                <Label text="Crie sua Conta" styleClass="titulo"/>
+                <TextField fx:id="campoNome" promptText="Nome" styleClass="input-field"/>
+                <TextField fx:id="campoEmailCadastro" promptText="Email" styleClass="input-field"/>
+                <PasswordField fx:id="campoSenhaCadastro" promptText="Senha" styleClass="input-field"/>
+                <Button text="Cadastrar" onAction="#fazerCadastro" styleClass="btn-entrar"/>
+                <Hyperlink text="Já tenho conta" onAction="#mostrarLogin" styleClass="link"/>
+                <Label fx:id="mensagemCadastro"/>
+            </VBox>
+
+        </StackPane>
+
+        <!-- Painel direito (imagem de fundo) -->
+        <StackPane prefWidth="550" styleClass="image-section"/>
+    </HBox>
+</AnchorPane>
