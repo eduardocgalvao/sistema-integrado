@@ -1,0 +1,72 @@
+/* Fundo geral */
+.root {
+    -fx-background-color: #121212;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* Painel esquerdo */
+.form-section {
+    -fx-background-color: #1e1e1e;
+    -fx-padding: 40;
+}
+
+/* Painel direito (imagem) */
+.image-section {
+    -fx-background-image: url("/images/montanha.jpg"); /* Coloque sua imagem */
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+/* Título */
+.titulo {
+    -fx-font-size: 28px;
+    -fx-text-fill: linear-gradient(to right, #ff8a00, #e52e71);
+    -fx-font-weight: bold;
+}
+
+/* Campos de texto */
+.input-field {
+    -fx-pref-width: 280px;
+    -fx-padding: 10px;
+    -fx-background-color: transparent;
+    -fx-border-color: linear-gradient(to right, #ff8a00, #e52e71);
+    -fx-border-radius: 8;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #aaa;
+}
+
+/* Botão principal */
+.btn-entrar {
+    -fx-background-color: linear-gradient(to right, #ff8a00, #e52e71);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 12 20;
+    -fx-cursor: hand;
+}
+
+.btn-entrar:hover {
+    -fx-background-color: linear-gradient(to right, #e52e71, #ff8a00);
+}
+
+/* Links */
+.link {
+    -fx-text-fill: #bbb;
+    -fx-underline: true;
+    -fx-cursor: hand;
+}
+
+.link:hover {
+    -fx-text-fill: white;
+}
+
+/* Mensagens */
+.mensagem-erro {
+    -fx-text-fill: #ff4d4d;
+    -fx-font-weight: bold;
+}
+
+.mensagem-sucesso {
+    -fx-text-fill: #4dff88;
+    -fx-font-weight: bold;
+}
