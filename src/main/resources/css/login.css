@@ -12,7 +12,7 @@
 
 /* Painel direito (imagem) */
 .image-section {
-    -fx-background-image: url("/images/montanha.jpg"); /* Coloque sua imagem */
+    -fx-background-image: url("/images/fundo.png"); /* Coloque sua imagem */
     -fx-background-size: cover;
     -fx-background-position: center;
 }
