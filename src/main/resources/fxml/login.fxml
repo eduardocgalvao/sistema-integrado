@@ -29,6 +29,8 @@
                 <TextField fx:id="campoNome" promptText="Nome" styleClass="input-field"/>
                 <TextField fx:id="campoEmailCadastro" promptText="Email" styleClass="input-field"/>
                 <PasswordField fx:id="campoSenhaCadastro" promptText="Senha" styleClass="input-field"/>
+                <TextField fx:id="campoTelefoneCadastro" promptText="Telefone" styleClass="input-field"/>
+                <TextField fx:id="campoSetorCadastro" promptText="Setor" styleClass="input-field"/>
                 <Button text="Cadastrar" onAction="#fazerCadastro" styleClass="btn-entrar"/>
                 <Hyperlink text="Já tenho conta" onAction="#mostrarLogin" styleClass="link"/>
                 <Label fx:id="mensagemCadastro"/>
