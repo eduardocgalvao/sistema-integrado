@@ -1,0 +1,54 @@
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: #f4f6f9;
+}
+
+/* Tabela */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #dcdfe3;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 10;
+}
+
+.table-view .column-header {
+    -fx-background-color: #2c3e50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+}
+
+.table-view .table-cell {
+    -fx-padding: 6;
+    -fx-font-size: 13px;
+}
+
+/* Botões */
+.button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+    -fx-padding: 6 12 6 12;
+}
+
+.button:hover {
+    -fx-background-color: #2980b9;
+}
+
+/* Botão de excluir */
+#btnExcluir {
+    -fx-background-color: #e74c3c;
+}
+#btnExcluir:hover {
+    -fx-background-color: #c0392b;
+}
+
+/* Rodapé */
+.hbox {
+    -fx-spacing: 10;
+    -fx-padding: 10;
+    -fx-alignment: CENTER;
+}
