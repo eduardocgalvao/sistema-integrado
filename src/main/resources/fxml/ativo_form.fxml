@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.grupo.sistema.ativos.ui.AtivoFormController"
+      spacing="10" alignment="CENTER">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Cadastro de Ativo" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+    <GridPane hgap="10" vgap="10">
+        <Label text="Tipo:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtTipo" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Marca:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtMarca" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Modelo:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtModelo" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="Nº Série:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtNumSerie" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <Label text="Setor:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtSetor" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+        <Label text="Responsável (ID):" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtResponsavel" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+        <Label text="Status:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="cbStatus" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+        <Label text="Valor:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtValor" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+        <Label text="Garantia Fim:" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+        <DatePicker fx:id="dpGarantia" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+
+        <Label text="Descrição:" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+        <TextArea fx:id="txtDescricao" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Salvar" onAction="#salvar"/>
+        <Button text="Cancelar" onAction="#cancelar"/>
+    </HBox>
+</VBox>
