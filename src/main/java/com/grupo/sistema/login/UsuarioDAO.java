@@ -1,84 +1,59 @@
 package com.grupo.sistema.login;
 
-import java.sql.*;
-import java.io.InputStream;
-import java.util.Properties;
+import com.grupo.sistema.config.DatabaseConfig;
+import com.grupo.sistema.model.Usuario;
 import org.mindrot.jbcrypt.BCrypt;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class UsuarioDAO {
 
-    private Connection conectar() throws SQLException {
-        String url = System.getenv("DB_URL");
-        String user = System.getenv("DB_USER");
-        String pass = System.getenv("DB_PASS");
+    // Valida login e retorna Usuario se válido
+    public Usuario validarLogin(String email, String senha) {
+        String sql = "SELECT id, nome, email, role, senha FROM usuarios WHERE email = ?";
+        try (Connection conn = DatabaseConfig.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
-        // Se não encontrar no ambiente, tenta no application.properties
-        if (url == null || user == null || pass == null) {
-            try (InputStream input = getClass().getClassLoader().getResourceAsStream("application.properties")) {
-                if (input == null) {
-                    throw new RuntimeException("Arquivo application.properties não encontrado!");
-                }
-                Properties prop = new Properties();
-                prop.load(input);
-
-                if (url == null) url = prop.getProperty("DB_URL");
-                if (user == null) user = prop.getProperty("DB_USER");
-                if (pass == null) pass = prop.getProperty("DB_PASS");
-            } catch (Exception e) {
-                throw new RuntimeException("Erro ao carregar configuração do banco", e);
-            }
-        }
-
-        if (url == null || user == null || pass == null) {
-            throw new RuntimeException("Configurações do banco não encontradas em variáveis de ambiente nem no properties!");
-        }
-
-        return DriverManager.getConnection(url, user, pass);
-    }
-
-    public boolean validarLogin(String email, String senha) {
-        String sql = "SELECT senha FROM usuarios WHERE email = ?";
-        try (Connection conn = conectar();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, email);
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    String senhaHash = rs.getString("senha");
-                    return BCrypt.checkpw(senha, senhaHash);
+            ps.setString(1, email);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next() && BCrypt.checkpw(senha, rs.getString("senha"))) {
+                    Usuario u = new Usuario();
+                    u.setId(rs.getInt("id"));
+                    u.setNome(rs.getString("nome"));
+                    u.setEmail(rs.getString("email"));
+                    u.setPapel(rs.getString("role"));
+                    return u;
                 }
             }
+
         } catch (SQLException e) {
-            System.err.println("Erro ao validar login: " + e.getMessage()); // 🔹 remove printStackTrace
+            System.err.println("Erro ao validar login: " + e.getMessage());
         }
-        return false;
+        return null;
     }
 
-    public boolean cadastrarUsuario(String nome, String email, String senha) {
-        String sqlCheck = "SELECT 1 FROM usuarios WHERE email = ?";
-        String sqlInsert = "INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)";
-
-        try (Connection conn = conectar();
-             PreparedStatement checkStmt = conn.prepareStatement(sqlCheck)) {
-
-            checkStmt.setString(1, email);
-            try (ResultSet rs = checkStmt.executeQuery()) {
-                if (rs.next()) {
-                    return false; // email já existe
-                }
-            }
+    // Cadastra novo usuário; retorna true se sucesso, false se email já existe
+    public boolean cadastrarUsuario(String nome, String email, String senha, String telefone, String setor) {
+        String sql = "INSERT INTO usuarios (nome, email, senha, telefone, setor, role) " +
+                "SELECT ?, ?, ?, ?, ?, 'USER' WHERE NOT EXISTS (SELECT 1 FROM usuarios WHERE email = ?)";
+        try (Connection conn = DatabaseConfig.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
             String senhaHash = BCrypt.hashpw(senha, BCrypt.gensalt());
+            ps.setString(1, nome);
+            ps.setString(2, email);
+            ps.setString(3, senhaHash);
+            ps.setString(4, telefone);
+            ps.setString(5, setor);
+            ps.setString(6, email);
 
-            try (PreparedStatement insertStmt = conn.prepareStatement(sqlInsert)) {
-                insertStmt.setString(1, nome);
-                insertStmt.setString(2, email);
-                insertStmt.setString(3, senhaHash);
-                insertStmt.executeUpdate();
-                return true;
-            }
+            return ps.executeUpdate() > 0;
 
         } catch (SQLException e) {
-            System.err.println("Erro ao cadastrar usuário: " + e.getMessage()); // 🔹 remove printStackTrace
+            System.err.println("Erro ao cadastrar usuário: " + e.getMessage());
         }
         return false;
     }
