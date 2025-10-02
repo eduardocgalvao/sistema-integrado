@@ -9,8 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -31,6 +30,8 @@ public class UserListChamadoController implements Initializable {
     private TableColumn<Chamado, java.sql.Date> dateList;
     @FXML
     private TableColumn<Chamado, String> statusList;
+    @FXML
+    private Button deleteButton;
 
 
 
@@ -54,6 +55,8 @@ public class UserListChamadoController implements Initializable {
         }
     }
 
+
+
     public void switchWindow(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/chamadosFXML/user/newChamado.fxml"));
         Scene scene = new Scene(root);
@@ -61,4 +64,7 @@ public class UserListChamadoController implements Initializable {
         window.setScene(scene);
         window.show();
     }
+
+
+
 }

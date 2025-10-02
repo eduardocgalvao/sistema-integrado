@@ -57,9 +57,10 @@ public class ChamadoDAO {
             }
     }
 
-    public List<Chamado> searchChamado() {
+    public List<Chamado> searchChamado() throws SQLException {
         List<Chamado> chamados = new ArrayList<>();
         String sql = "SELECT " +
+                "     c.iDChamado, " +
                 "     u.nome AS usuarioNome, " +
                 "     c.equipamento, " +
                 "     c.descricao,  " +
@@ -70,8 +71,11 @@ public class ChamadoDAO {
                 "JOIN usuario u ON c.idUsuario = u.idUsuario " +
                 "JOIN statuschamado s ON c.idStatus = s.idStatus";
 
-
         try {
+            Connection conn = null;
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+
             //garante a conexão o db
             ps = ConnectionFactory.getConexao().prepareStatement(sql);
             //executa a consulta no db
@@ -84,6 +88,7 @@ public class ChamadoDAO {
                 StatusChamado s = new StatusChamado();
 
                 //inner join entre chamado e usuario
+                ch.setIdChamado(rs.getInt("idChamado"));
                 ch.setUsuarioNome(rs.getString("usuarioNome"));
                 ch.setEquipamento(rs.getString("equipamento"));
                 ch.setDescricao(rs.getString("descricao"));
@@ -97,10 +102,14 @@ public class ChamadoDAO {
             //lista os chamados
             System.out.println(chamados.toString());
             //fecha a execução
-            ps.close();
+
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (conn != null) conn.close();
         }
         System.out.println("[DEBUG] ChamadoDAO.searchChamado() encontrou " + chamados.size() + " chamados.");
         for (Chamado c : chamados) {
@@ -115,7 +124,7 @@ public class ChamadoDAO {
 
     //Edição dos dados do chamado (admin)
     public void editChamado(Chamado chamado){
-        String sql = "UPDATE chamado SET equipamento = ?, descricao = ?,  where idUsuario = ?";
+        String sql = "UPDATE chamado SET equipamento = ?, descricao = ?,  where idChamado = ?";
 
         try {
             ps = ConnectionFactory.getConexao().prepareStatement(sql);
@@ -129,27 +138,72 @@ public class ChamadoDAO {
             e.printStackTrace();
         }
     }
+
+    public void updateStatus(Chamado chamado){
+        String sql = "UPDATE chamado SET idStatus = ?, WHERE idChamado = ?";
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+
+    }
     //Exclusão de chamado (admin)
-    public void deleteChamado(Chamado chamado){
+    public void deleteChamado(Chamado chamado) throws SQLException {
         String sql = "DELETE FROM chamado WHERE idChamado = ?";
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+
 
         try {
-            ps = ConnectionFactory.getConexao().prepareStatement(sql);
+            conn = ConnectionFactory.getConexao();
+            ps = conn.prepareStatement(sql);
             ps.setInt(1, chamado.getIdChamado());
-            ps.execute();
+            conn.setAutoCommit(false);
 
 
-            if (ps.execute() == false){
+            int rowsAffected = ps.executeUpdate();
+
+            if (rowsAffected > 0){
                 System.out.println("Chamado excluido com sucesso.");
             }else{
-                System.out.println("Chamado não encontrado");
+               throw new SQLException("Exclusão falhou, chamado com ID " + chamado.getIdChamado() + " não encontrado");
             }
 
-            ps.close();
+
 
         } catch (SQLException e){
-            e.printStackTrace();
+            if (ps != null){
+                try {
+                    System.err.println("Transação está sendo revertida");
+                    conn.rollback();
+                } catch (SQLException ex) {
+                    System.err.println("Erro ao tentar reverter transação: " + ex.getMessage());
+                }
+            }
+            throw new SQLException("Erro ao deletar chamado: " + e.getMessage(), e);
+
+
+        } finally {
+            if (ps != null){
+                try{
+                    ps.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
         }
+
+
+
+
+
     }
 
 }

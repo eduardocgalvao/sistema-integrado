@@ -9,14 +9,15 @@
    <children>
       <TableView fx:id="tableListChamado" layoutX="49.0" layoutY="72.0" prefHeight="479.0" prefWidth="739.0">
         <columns>
-          <TableColumn fx:id="userList" prefWidth="120.0" text="Usuário" />
-          <TableColumn fx:id="equipList" prefWidth="97.0" text="Equipamento" />
-            <TableColumn fx:id="descList" prefWidth="272.0" text="Descrição" />
-            <TableColumn fx:id="dateList" prefWidth="116.0" text="Data" />
-            <TableColumn fx:id="statusList" prefWidth="133.0" text="Status" />
+            <TableColumn fx:id="idChList" prefWidth="11.0" text="id" visible="false" />
+          <TableColumn fx:id="userList" prefWidth="136.0" text="Usuário" />
+          <TableColumn fx:id="equipList" prefWidth="214.0" text="Equipamento" />
+            <TableColumn fx:id="descList" maxWidth="127.0" prefWidth="127.0" text="Descrição" />
+            <TableColumn fx:id="dateList" prefWidth="102.0" text="Data" />
+            <TableColumn fx:id="statusList" minWidth="0.0" prefWidth="159.0" text="Status" />
         </columns>
       </TableView>
       <Button fx:id="editButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Editar" />
-      <Button fx:id="deleteButton" layoutX="82.0" layoutY="14.0" mnemonicParsing="false" text="Deletar" />
+      <Button fx:id="deleteButton" layoutX="82.0" layoutY="14.0" mnemonicParsing="false" onAction="#deleteChamado" text="Deletar" />
    </children>
 </AnchorPane>

@@ -18,6 +18,7 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/chamadosFXML/UserOrAdmin.fxml"));
         Scene scene = new Scene(root);
+        stage.setTitle("Sistema de chamado Y²E²");
         stage.setScene(scene);
         stage.show();
     }

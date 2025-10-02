@@ -3,6 +3,7 @@ package com.grupo.sistema.chamados.service;
 import com.grupo.sistema.chamados.dao.ChamadoDAO;
 import com.grupo.sistema.chamados.model.Chamado;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class ChamadoService  implements ChamadoRepository{
@@ -25,7 +26,7 @@ public class ChamadoService  implements ChamadoRepository{
     }
 
     @Override
-    public List<Chamado> searchChamado(){
+    public List<Chamado> searchChamado() throws SQLException {
         return chamadoDAO.searchChamado();
     }
 
@@ -39,13 +40,13 @@ public class ChamadoService  implements ChamadoRepository{
         chamadoDAO.editChamado(chamado);
     }
 
-    @Override
+//    @Override
     //Validações para deletar um chamado
-    public void deleteChamado(Chamado chamado){
-        if (chamado.getIdChamado() <= 0){
-            throw new IllegalArgumentException("Favor, inserir um ID válido para a exclusão");
-        }
-
-        chamadoDAO.deleteChamado(chamado);
-    }
+//    public void deleteChamado(int idChamado) throws SQLException {
+//        if (idChamado <= 0){
+//            throw new IllegalArgumentException("Favor, inserir um ID válido para a exclusão");
+//        }
+//
+//        chamadoDAO.deleteChamado(idChamado);
+//    }
 }
