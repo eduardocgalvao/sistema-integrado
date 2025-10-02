@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.grupo.sistema.ativos.ui.AtivosController"
+            stylesheets="@../css/ativos.css">
+
+    <!-- Topo com usuário logado -->
+    <top>
+        <HBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label fx:id="lblUsuario"/>
+        </HBox>
+    </top>
+
+    <!-- Centro com tabela de ativos -->
+    <center>
+        <TableView fx:id="tabelaAtivos" prefHeight="400">
+            <columns>
+                <TableColumn text="ID" fx:id="colId" prefWidth="50"/>
+                <TableColumn text="Tipo" fx:id="colTipo" prefWidth="120"/>
+                <TableColumn text="Marca" fx:id="colMarca" prefWidth="120"/>
+                <TableColumn text="Modelo" fx:id="colModelo" prefWidth="120"/>
+                <TableColumn text="Nº Série" fx:id="colNumSerie" prefWidth="150"/>
+                <TableColumn text="Setor" fx:id="colSetor" prefWidth="100"/>
+                <TableColumn text="Responsável" fx:id="colResponsavel" prefWidth="100"/>
+                <TableColumn text="Status" fx:id="colStatus" prefWidth="120"/>
+                <TableColumn text="Valor" fx:id="colValor" prefWidth="100"/>
+                <TableColumn text="Garantia" fx:id="colGarantia" prefWidth="100"/>
+                <TableColumn text="Descrição" fx:id="colDescricao" prefWidth="200"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <!-- Rodapé com botões -->
+    <bottom>
+        <HBox spacing="10" alignment="CENTER">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Button fx:id="btnNovo" text="Novo" onAction="#novoAtivo"/>
+            <Button fx:id="btnEditar" text="Editar" onAction="#editarAtivo"/>
+            <Button fx:id="btnExcluir" text="Excluir" onAction="#excluirAtivo"/>
+            <Button text="Exportar CSV (por Setor)" onAction="#exportarCSVPorSetor"/>
+            <Button text="Exportar TXT (por Responsável)" onAction="#exportarTXTPorResponsavel"/>
+        </HBox>
+    </bottom>
+</BorderPane>
