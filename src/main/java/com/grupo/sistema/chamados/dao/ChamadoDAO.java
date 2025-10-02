@@ -139,10 +139,27 @@ public class ChamadoDAO {
         }
     }
 
-    public void updateStatus(Chamado chamado){
-        String sql = "UPDATE chamado SET idStatus = ?, WHERE idChamado = ?";
+    public void updateStatus(Chamado chamado) throws SQLException {
+        String sql = "UPDATE chamado SET idStatus = ? WHERE idChamado = ?";
         Connection conn = null;
         PreparedStatement ps = null;
+
+        try {
+            ps = ConnectionFactory.getConexao().prepareStatement(sql);
+            ps.setInt(1, chamado.getStatus().getIdStatus());
+            ps.setInt(2, chamado.getIdChamado());
+
+            ps.executeUpdate();
+
+
+        } catch (SQLException e){
+            e.printStackTrace();
+
+        } finally {
+            if (ps != null){
+                ps.close();
+            }
+        }
 
 
     }
@@ -158,7 +175,7 @@ public class ChamadoDAO {
             conn = ConnectionFactory.getConexao();
             ps = conn.prepareStatement(sql);
             ps.setInt(1, chamado.getIdChamado());
-            conn.setAutoCommit(false);
+
 
 
             int rowsAffected = ps.executeUpdate();

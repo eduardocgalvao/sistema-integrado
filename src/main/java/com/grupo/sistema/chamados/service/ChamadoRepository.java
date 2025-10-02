@@ -9,6 +9,6 @@ public interface ChamadoRepository {
     public abstract void abrirChamado(Chamado chamado);
     List<Chamado> searchChamado() throws SQLException;
     public abstract void editChamado(Chamado chamado);
-//    public abstract void deleteChamado(int idChamado) throws SQLException;
+    public abstract void deleteChamado(Chamado chamado) throws SQLException;
 
 }

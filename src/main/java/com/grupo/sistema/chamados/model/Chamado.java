@@ -30,6 +30,7 @@ public class Chamado {
         data_fechamento = null;
         status = null;
         usuarioNome = null;
+
     }
 
     public void setEquipamento(String equipamento) {

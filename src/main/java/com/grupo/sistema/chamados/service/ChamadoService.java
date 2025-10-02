@@ -40,13 +40,13 @@ public class ChamadoService  implements ChamadoRepository{
         chamadoDAO.editChamado(chamado);
     }
 
-//    @Override
+    @Override
     //Validações para deletar um chamado
-//    public void deleteChamado(int idChamado) throws SQLException {
-//        if (idChamado <= 0){
-//            throw new IllegalArgumentException("Favor, inserir um ID válido para a exclusão");
-//        }
-//
-//        chamadoDAO.deleteChamado(idChamado);
-//    }
+    public void deleteChamado(Chamado chamado) throws SQLException {
+        if (chamado.getIdChamado() <= 0){
+            throw new IllegalArgumentException("Favor, inserir um ID válido para a exclusão");
+        }
+
+        chamadoDAO.deleteChamado(chamado);
+    }
 }
