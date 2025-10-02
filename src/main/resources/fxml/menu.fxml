@@ -14,18 +14,23 @@
             <Label text="Eduardo²Yan²" styleClass="sidebar-title"/>
 
             <!-- Botões de navegação -->
-            <Button styleClass="sidebar-button" onAction="#abrirAtivos">
+            <Button text="Ativos" styleClass="sidebar-button" onAction="#abrirAtivos">
                 <graphic>
                     <FontIcon iconLiteral="fas-database" iconSize="16" iconColor="white"/>
                 </graphic>
-                <text>Ativos</text>
             </Button>
 
-            <Button styleClass="sidebar-button" onAction="#abrirChamados">
+            <Button text="Chamados" styleClass="sidebar-button" onAction="#abrirChamados">
                 <graphic>
                     <FontIcon iconLiteral="fas-headset" iconSize="16" iconColor="white"/>
                 </graphic>
-                <text>Chamados</text>
+            </Button>
+
+            <!-- Botão de Logout -->
+            <Button text="Sair" styleClass="sidebar-button" onAction="#logout">
+                <graphic>
+                    <FontIcon iconLiteral="fas-sign-out-alt" iconSize="16" iconColor="white"/>
+                </graphic>
             </Button>
         </VBox>
     </left>
