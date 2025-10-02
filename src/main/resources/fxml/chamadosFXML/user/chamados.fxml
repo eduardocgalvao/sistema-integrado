@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.0" prefWidth="804.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.grupo.sistema.chamados.ui.UserUI.UserListChamadoController">
+   <children>
+      <Button fx:id="newChamadoButton" layoutX="686.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchWindow" prefHeight="30.0" prefWidth="107.0" text="Novo Chamado" />
+      <Label fx:id="welcomeLabel" alignment="TOP_LEFT" layoutX="27.0" layoutY="14.0" prefHeight="30.0" prefWidth="434.0" text="BEM VINDO">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableListChamado" layoutX="33.0" layoutY="96.0" prefHeight="490.0" prefWidth="737.0">
+        <columns>
+          <TableColumn fx:id="equipamentoList" prefWidth="153.0" text="Equipamento" />
+          <TableColumn fx:id="descricaoList" prefWidth="294.39996337890625" text=" Descrição" />
+            <TableColumn fx:id="dateList" prefWidth="254.0" text="Data" />
+            <TableColumn fx:id="statusList" prefWidth="254.0" text="Status" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</AnchorPane>
